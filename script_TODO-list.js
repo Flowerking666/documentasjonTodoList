@@ -1,11 +1,14 @@
+var conTasks = 0;
+var nr = 0; 
+
 function addElement(){
   var nodeList = document.getElementsByTagName("li");
   var li = document.createElement("li");
   var inputValue = document.getElementById("input1").value;
   var t = document.createTextNode(inputValue);
   var check = document.createElement("input");
-  var nr = nodeList.length + 1;
-
+  
+  nr = nodeList.length + 1; 
   check.setAttribute("type", "checkbox");
   check.setAttribute("id", "check" + nr.toString());
   li.setAttribute("id", "li" + nr.toString());
@@ -19,6 +22,7 @@ function addElement(){
   } else {
       document.getElementById('list').appendChild(li);
   }
+  document.getElementById("teller").innerHTML = conTasks+" / "+nr;
 }
 
 function checked(obj){
@@ -30,4 +34,14 @@ function checked(obj){
   else {
     obj.setAttribute("style", "text-decoration:line-through");
   }
+  if (checkBox[0].checked == true){
+    conTasks = conTasks + 1;
+  } else {
+    conTasks = conTasks - 1;
+  }
+  document.getElementById("teller").innerHTML = conTasks+" / "+nr;
 }
+//
+window.onload = function() {
+  document.getElementById("input1").focus();
+};
